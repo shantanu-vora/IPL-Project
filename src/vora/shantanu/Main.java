@@ -12,8 +12,6 @@ public class Main {
 
 		ArrayList<ArrayList<String>> deliveryData = new ArrayList<>();
 		ArrayList<ArrayList<String>> matchData = new ArrayList<>();
-		ArrayList<String> match;
-		ArrayList<String> delivery;
 
 		FileReader matchReader = new FileReader("./matches.csv");
 		FileReader deliveryReader = new FileReader("./deliveries.csv");
@@ -24,7 +22,7 @@ public class Main {
 
 		String line;
 		while((line = bufferedReader.readLine()) != null) {
-			match = new ArrayList<>(Arrays.asList((line.split(","))));
+			ArrayList<String> match = new ArrayList<>(Arrays.asList((line.split(","))));
 			matchData.add(match);
 		}
 
@@ -33,7 +31,7 @@ public class Main {
 //		System.out.println(Arrays.asList(deliveryHeaders));
 
 		while((line = bufferedReader.readLine()) != null) {
-			delivery = new ArrayList<>(Arrays.asList((line.split(","))));
+			ArrayList<String> delivery = new ArrayList<>(Arrays.asList((line.split(","))));
 			deliveryData.add(delivery);
 		}
 
