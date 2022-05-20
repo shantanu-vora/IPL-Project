@@ -3,6 +3,7 @@ package vora.shantanu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Scenario4 {
 	private ArrayList<ArrayList<String>> matchData;
@@ -52,6 +53,24 @@ public class Scenario4 {
 			}
 		}
 		return map;
+	}
+
+	private HashMap<String, Double> constructMap(HashMap<String, ArrayList<Double>> map) {
+		HashMap<String, Double> economyMap = new HashMap<>();
+
+		for(Map.Entry<String, ArrayList<Double>> m: map.entrySet()) {
+			Double deliveries = map.get(m.getKey()).get(0);
+			Double runs = map.get(m.getKey()).get(1);
+			Double economyRate = (runs) / (deliveries / 6);
+
+			economyMap.put(m.getKey(), economyRate);
+		}
+		return economyMap;
+	}
+
+	public void printOutput() {
+		constructMap(deliveriesAndRunsMap(getMatches2015()));
+		System.out.println(constructMap(deliveriesAndRunsMap(getMatches2015())));
 	}
 
 }
