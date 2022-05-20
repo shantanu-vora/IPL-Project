@@ -1,6 +1,7 @@
 package vora.shantanu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Scenario3 {
 	private ArrayList<ArrayList<String>> matchData;
@@ -30,4 +31,22 @@ public class Scenario3 {
 		return matches2016;
 	}
 
+	private HashMap<String, Integer> constructMap(ArrayList<ArrayList<String>> matches2016) {
+		HashMap<String, Integer> map = new HashMap<>();
+		for(ArrayList<String> match: matches2016) {
+			String matchId = match.get(0);
+			for(ArrayList<String> delivery : deliveryData) {
+				if(delivery.get(0).equals(matchId)) {
+					String key = delivery.get(3);
+					int extras = Integer.parseInt(delivery.get(16));
+					if(!map.containsKey(key)) {
+						map.put(key, extras);
+					} else {
+						map.put(key, map.get(key) + extras);
+					}
+				}
+			}
+		}
+		return map;
+	}
 }
