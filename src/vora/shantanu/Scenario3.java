@@ -49,4 +49,8 @@ public class Scenario3 {
 		}
 		return map;
 	}
+
+	public void printOutput() {
+		System.out.println(constructMap(getMatches2016()));
+	}
 }
