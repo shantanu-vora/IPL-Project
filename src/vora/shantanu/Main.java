@@ -5,16 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 
-		List<List<String>> deliveryData = new ArrayList<>();
-		List<List<String>> matchData = new ArrayList<>();
-		List<String> match;
-		List<String> delivery;
+		ArrayList<ArrayList<String>> deliveryData = new ArrayList<>();
+		ArrayList<ArrayList<String>> matchData = new ArrayList<>();
+		ArrayList<String> match;
+		ArrayList<String> delivery;
 
 		FileReader matchReader = new FileReader("./matches.csv");
 		FileReader deliveryReader = new FileReader("./deliveries.csv");
@@ -23,9 +22,9 @@ public class Main {
 		String[] matchHeaders = bufferedReader.readLine().split(",");
 //		System.out.println(Arrays.asList(matchHeaders));
 
-		String line = "";
+		String line;
 		while((line = bufferedReader.readLine()) != null) {
-			match = Arrays.asList((line.split(",")));
+			match = new ArrayList<>(Arrays.asList((line.split(","))));
 			matchData.add(match);
 		}
 
@@ -34,7 +33,7 @@ public class Main {
 //		System.out.println(Arrays.asList(deliveryHeaders));
 
 		while((line = bufferedReader.readLine()) != null) {
-			delivery = Arrays.asList((line.split(",")));
+			delivery = new ArrayList<>(Arrays.asList((line.split(","))));
 			deliveryData.add(delivery);
 		}
 
