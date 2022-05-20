@@ -31,4 +31,8 @@ public class Scenario2 {
 		return map;
 	}
 
+	public void printOutput() {
+		System.out.println(constructMap());
+	}
+
 }
