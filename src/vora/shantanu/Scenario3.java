@@ -19,5 +19,15 @@ public class Scenario3 {
 		return deliveryData;
 	}
 
+	private ArrayList<ArrayList<String>> getMatches2016() {
+		ArrayList<ArrayList<String>> matches2016 = new ArrayList<>();
+		for(ArrayList<String> match: matchData) {
+			if(match.get(1).equals("2016")) {
+				matches2016.add(match);
+			}
+		}
+
+		return matches2016;
+	}
 
 }
