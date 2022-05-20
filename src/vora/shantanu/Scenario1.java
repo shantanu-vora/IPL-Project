@@ -2,7 +2,6 @@ package vora.shantanu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Scenario1 {
 	private ArrayList<ArrayList<String>> matchData;
@@ -15,8 +14,8 @@ public class Scenario1 {
 		return matchData;
 	}
 
-	public void constructMap() {
-		Map<String, Integer> map = new HashMap<>();
+	private HashMap<String, Integer> constructMap() {
+		HashMap<String, Integer> map = new HashMap<>();
 
 
 		for(ArrayList<String> match: matchData) {
@@ -28,8 +27,10 @@ public class Scenario1 {
 			}
 		}
 
-		System.out.println(map);
-
+		return map;
 	}
 
+	public void printOutput() {
+		System.out.println(constructMap());
+	}
 }
