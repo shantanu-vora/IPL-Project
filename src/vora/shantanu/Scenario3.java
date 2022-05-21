@@ -65,6 +65,7 @@ public class Scenario3 {
 	}
 
 	public void printOutput() {
+		System.out.println("For the year 2016 get the extra runs conceded per team:");
 		System.out.println(constructMap(getMatches2016()));
 	}
 }

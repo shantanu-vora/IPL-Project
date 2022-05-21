@@ -92,7 +92,7 @@ public class Scenario5 {
 	}
 
 	public void printOutput() {
+		System.out.println("For the year 2017, the strike rate of all the batters:");
 		System.out.println(constructMap(getDeliveriesAndRunsMap(getMatches2017())));
 	}
-
 }

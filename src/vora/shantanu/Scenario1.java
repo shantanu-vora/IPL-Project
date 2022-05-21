@@ -36,6 +36,7 @@ public class Scenario1 {
 	}
 
 	public void printOutput() {
+		System.out.println("Number of matches played per year of all the years in IPL:");
 		System.out.println(constructMap());
 	}
 }

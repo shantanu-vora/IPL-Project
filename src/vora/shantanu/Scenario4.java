@@ -95,7 +95,7 @@ public class Scenario4 {
 	}
 
 	public void printOutput() {
+		System.out.println("For the year 2015 the economy rate of all bowlers:");
 		System.out.println(constructMap(getDeliveriesAndRunsMap(getMatches2015())));
 	}
-
 }
