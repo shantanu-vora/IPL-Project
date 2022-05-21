@@ -22,7 +22,7 @@ public class Scenario3 {
 
 	/*
 		getMatches2016() method returns a nested arrayList filtered with only
-		rows(matches) played in Season year 2016. It accesses season year by index
+		rows(matches) played in Season year 2016. It accesses season year by index 1
 	 */
 	private ArrayList<ArrayList<String>> getMatches2016() {
 		ArrayList<ArrayList<String>> matches2016 = new ArrayList<>();
