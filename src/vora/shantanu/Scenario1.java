@@ -14,9 +14,13 @@ public class Scenario1 {
 		return matchData;
 	}
 
+	/*
+		constructMap() method checks for every row representing a match in list matchData
+		whether the Season number(year) is already present in the map as a key. If not it
+		initializes the key(Season number) with 1, If yes, it just increments the value by 1
+	 */
 	private HashMap<String, Integer> constructMap() {
 		HashMap<String, Integer> map = new HashMap<>();
-
 
 		for(ArrayList<String> match: matchData) {
 			String key = match.get(1);
