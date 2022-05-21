@@ -23,7 +23,7 @@ public class Scenario4 {
 	}
 
 	/*
-		getMatches2016() method returns a nested arrayList filtered with only
+		getMatches2015() method returns a nested arrayList filtered with only
 		rows(matches) played in Season year 2015. It accesses season year by index 1
 	 */
 	private ArrayList<ArrayList<String>> getMatches2015() {
@@ -47,8 +47,8 @@ public class Scenario4 {
 		matchId is accessed at index 0. Bowler name is accessed at index 8. Total runs conceded are
 		accessed at index 17
 		It checks if map contains bowler name. If not, then initializes arraylist with 1 at index 0
-		and totalRuns at index1. If yes, then increment the delivery count at index 1 by 1 and
-		conceded runs count by totalRuns.
+		and totalRuns at index1. If yes, then increment the delivery count at index 0 by 1 and
+		conceded runs count at index 1 by totalRuns.
 	 */
 	public HashMap<String, ArrayList<Double>> getDeliveriesAndRunsMap(ArrayList<ArrayList<String>> matches2015) {
 		HashMap<String, ArrayList<Double>> map = new HashMap<>();

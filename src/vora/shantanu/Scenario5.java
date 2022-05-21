@@ -21,6 +21,10 @@ public class Scenario5 {
 		return deliveryData;
 	}
 
+	/*
+		getMatches2017() method returns a nested arrayList filtered with only
+		rows(matches) played in Season year 2017. It accesses season year by index 1
+	 */
 	private ArrayList<ArrayList<String>> getMatches2017() {
 		ArrayList<ArrayList<String>> matches2017 = new ArrayList<>();
 		for(ArrayList<String> match: matchData) {
@@ -31,13 +35,29 @@ public class Scenario5 {
 		return matches2017;
 	}
 
-	private HashMap<String, ArrayList<Double>> deliveriesAndRunsMap(ArrayList<ArrayList<String>> matches2017) {
+	/*
+		getDeliveriesAndRunsMap()  method accepts a nested arrayList representing only
+		matches played in 2017. It returns a hashmap with the batter name as key and
+		an array list as value containing balls faced at index 0 and runs scored at index 1
+		{
+			<bowler_name> : [<balls_delivered>, <runs_conceded>]
+		}
+		matchId is accessed at index 0. Batter name is accessed at index 6. Total runs scored are
+		accessed at index 15
+		It checks if map contains batter name. If not, then initializes arraylist with 1 at index 0
+		and totalRuns scored at index 1. If yes, then increments the deliveries faced count at index 0 by 1 and
+		scored runs count at index 1 by totalRuns.
+	 */
+	private HashMap<String, ArrayList<Double>> getDeliveriesAndRunsMap(ArrayList<ArrayList<String>> matches2017) {
 		HashMap<String, ArrayList<Double>> map = new HashMap<>();
+
 		for(ArrayList<String> match: matches2017) {
 			String matchId = match.get(0);
+
 			for(ArrayList<String> delivery: deliveryData) {
 				if(delivery.get(0).equals(matchId)) {
 					String key = delivery.get(6);
+
 					if(!map.containsKey(key)) {
 						map.put(key, new ArrayList<>());
 						map.get(key).add(0, 1.0);
@@ -53,6 +73,11 @@ public class Scenario5 {
 		return map;
 	}
 
+	/*
+		constructMap() method accepts a hashmap as a parameter and returns a hashmap.
+		It loops the entry set and counts the deliveries faced and runs scored for each key(batter name)
+		It calculates strikeRate and initializes batter with the strikeRate and returns a new map.
+	 */
 	private HashMap<String, Double> constructMap(HashMap<String, ArrayList<Double>> map) {
 		HashMap<String, Double> strikeRateMap = new HashMap<>();
 
@@ -67,7 +92,7 @@ public class Scenario5 {
 	}
 
 	public void printOutput() {
-		System.out.println(constructMap(deliveriesAndRunsMap(getMatches2017())));
+		System.out.println(constructMap(getDeliveriesAndRunsMap(getMatches2017())));
 	}
 
 }
