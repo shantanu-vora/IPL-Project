@@ -66,6 +66,8 @@ public class Scenario5 {
 		return strikeRateMap;
 	}
 
-
+	public void printOutput() {
+		System.out.println(constructMap(deliveriesAndRunsMap(getMatches2017())));
+	}
 
 }
