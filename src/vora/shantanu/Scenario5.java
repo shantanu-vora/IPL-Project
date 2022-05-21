@@ -19,6 +19,14 @@ public class Scenario5 {
 		return deliveryData;
 	}
 
-
+	private ArrayList<ArrayList<String>> getMatches2017() {
+		ArrayList<ArrayList<String>> matches2017 = new ArrayList<>();
+		for(ArrayList<String> match: matchData) {
+			if(match.get(1).equals("2017")) {
+				matches2017.add(match);
+			}
+		}
+		return matches2017;
+	}
 
 }
