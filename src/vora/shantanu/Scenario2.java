@@ -38,7 +38,7 @@ public class Scenario2 {
 	}
 
 	public void printOutput() {
-		System.out.println("Number of matches won of all teams over all the years of IPL:");
+		System.out.println("\nNumber of matches won of all teams over all the years of IPL:");
 		System.out.println(constructMap());
 	}
 }
