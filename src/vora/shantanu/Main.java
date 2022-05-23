@@ -86,28 +86,38 @@ public class Main {
 	* findNumberOfMatchesPlayedPerSeason() method checks for every row representing a match in list matches
 		whether the Season number(year) is already present in the map as a key. If not it
 		initializes the key(Season number) with 1, If yes, it just increments the value by 1.
-		It accesses season year by index 1.
+
 	* */
 	private static void findNumberOfMatchesPlayedPerSeason(List<Match> matches) {
 		Map<String, Integer> matchesPlayedPerYear = new HashMap<>();
 
 		for(Match match: matches) {
-			String season = match.getSeason(); //key
+			//season acts as the key
+			String season = match.getSeason();
 			if(!matchesPlayedPerYear.containsKey(season)) {
 				matchesPlayedPerYear.put(season, 1);
 			} else {
 				matchesPlayedPerYear.put(season, matchesPlayedPerYear.get(season) + 1);
 			}
 		}
+
 		System.out.println(matchesPlayedPerYear);
 	}
 
+		/*
+		findNumberOfMatchesWonPerTeamOverAllSeasons() method checks for every row representing a match in list matches
+		whether the Team name is already present in the map as a key. If not it
+		initializes the key(Team name) with 1. If yes, it just increments the value by 1.
+
+	 */
 	private static void findNumberOfMatchesWonPerTeamOverAllSeasons(List<Match> matches) {
 		Map<String, Integer> matchesWonPerTeam = new HashMap<>();
 
 		for(Match match: matches) {
-			String winner = match.getWinner(); // result can be no_result
-			if(!winner.equals("")) {	 // Hence, key can be empty string
+			//winner acts as the key
+			String winner = match.getWinner();
+			// result can be no_result. Hence, key can be empty string
+			if(!winner.equals("")) {
 				if(!matchesWonPerTeam.containsKey(winner)) {
 					matchesWonPerTeam.put(winner, 1);
 				} else {
@@ -115,18 +125,26 @@ public class Main {
 				}
 			}
 		}
+
 		System.out.println(matchesWonPerTeam);
 	}
 
+		/*
+		findExtraRunsConcededPerTeamIn2016() method accepts two lists matches and deliveries representing
+		one match and delivery by one row. It returns a hashmap. It loops matches and for every match played in 2016
+		it also loops deliveries. It compares id in matches list and matchId in deliveries list.
+		If it matches then key is initialized with Bowling team name.	It initializes extras with corresponding extra runs.
+		Then checks if the map contains key(bowling team). If not, initialize the key with extras.
+		If yes, then just add extras to the original extras
+	 */
 	private static void findExtraRunsConcededPerTeamIn2016(List<Match> matches, List<Delivery> deliveries) {
 		Map<String, Integer> extraRunsConcededPerTeamIn2016 = new HashMap<>();
 
 		for(Match match: matches) {
-
 			if(match.getSeason().equals("2016")) {
 				for(Delivery delivery: deliveries) {
-
 					if(match.getId().equals(delivery.getMatchId())) {
+						//bowlingTeam acts as the key
 						String bowlingTeam = delivery.getBowlingTeam();
 						int extras = Integer.parseInt(delivery.getExtraRuns());
 
@@ -143,6 +161,19 @@ public class Main {
 		System.out.println(extraRunsConcededPerTeamIn2016);
 	}
 
+		/*
+		findDeliveriesAndRunsPerBowler()  method accepts two lists matches and deliveries representing
+		match and delivery. It returns a hashmap with the bowler name as key and
+		an array as value containing balls delivered at index 0 and runs conceded at index 1
+		{
+			<bowler_name> : [<balls_delivered>, <runs_conceded>]
+		}
+
+		It loops matches and for every match played in 2015 it loops deliveries list. It compares id in matches
+		and matchId in deliveries. If it matches, then it checks if map contains bowler name.
+		If not, then initializes bowler key with empty array with 1 at index 0 and totalRuns at index1.
+		If yes, then increment the delivery count at index 0 by 1 and conceded runs count at index 1 by totalRuns.
+	 */
 	private static HashMap<String, double[]> findDeliveriesAndRunsPerBowler(List<Match> matches, List<Delivery> deliveries) {
 		HashMap<String, double[]> deliveriesAndRunsPerBowler = new HashMap<>();
 
@@ -155,7 +186,6 @@ public class Main {
 						if(!deliveriesAndRunsPerBowler.containsKey(bowler)) {
 
 							deliveriesAndRunsPerBowler.put(bowler, new double[2]);
-							//total runs conceded accessed at index 17
 							deliveriesAndRunsPerBowler.get(bowler)[0] = 1.0;
 							deliveriesAndRunsPerBowler.get(bowler)[1] = Double.parseDouble(delivery.getTotalRuns());
 						} else {
@@ -166,9 +196,15 @@ public class Main {
 				}
 			}
 		}
+
 		return deliveriesAndRunsPerBowler;
 	}
 
+		/*
+		findTopEconomicalBowlerIn2015() method accepts a hashmap as a parameter and returns a hashmap.
+		It loops the entry set and counts the deliveries and runs conceded for each key(bowler name)
+		It calculates economyRate and initializes bowler with the economyRate and prints map economyRatePerBowler.
+	 */
 	private static void findTopEconomicalBowlerIn2015(HashMap<String, double[]> deliveriesAndRunsPerBowler) {
 		Map<String, Double> economyRatePerBowler = new HashMap<>();
 
@@ -183,6 +219,19 @@ public class Main {
 		System.out.println(economyRatePerBowler);
 	}
 
+		/*
+		findDeliveriesAndRunsPerBatter()  method accepts two lists matches and deliveries representing
+		match and delivery. It returns a hashmap with the batter name as key and
+		an array as value containing balls faced at index 0 and runs scored at index 1
+		{
+			<batter_name> : [<balls_faced>, <runs_scored>]
+		}
+
+		It loops matches and for every match played in 2017 it loops deliveries list. It compares id in matches
+		and matchId in deliveries. If it matches, then it checks if map contains batter name.
+		If not, then initializes batter key with empty array with 1 at index 0 and batterRuns at index1.
+		If yes, then increment the delivery count at index 0 by 1 and scored runs count at index 1 by batterRuns.
+	 */
 	private static HashMap<String,double[]> findDeliveriesAndRunsPerBatter(List<Match> matches, List<Delivery> deliveries) {
 		HashMap<String, double[]> deliveriesAndRunsPerBatter = new HashMap<>();
 
@@ -195,7 +244,6 @@ public class Main {
 						if(!deliveriesAndRunsPerBatter.containsKey(batter)) {
 
 							deliveriesAndRunsPerBatter.put(batter, new double[2]);
-							//total runs conceded accessed at index 17
 							deliveriesAndRunsPerBatter.get(batter)[0] = 1.0;
 							deliveriesAndRunsPerBatter.get(batter)[1] = Double.parseDouble(delivery.getBatterRuns());
 						} else {
@@ -206,9 +254,15 @@ public class Main {
 				}
 			}
 		}
+
 		return deliveriesAndRunsPerBatter;
 	}
 
+	  /*
+		findStrikeRateOfBattersIn2017() method accepts a hashmap as a parameter and returns a hashmap.
+		It loops the entry set and counts the deliveries faced and runs scored for each key(batter name)
+		It calculates strikeRate and initializes batter with the strikeRate and prints map strikeRatePerBatter
+	 */
 	private static void findStrikeRateOfBattersIn2017(HashMap<String,double[]> deliveriesAndRunsPerBatter) {
 		HashMap<String, Double> strikeRatePerBatter = new HashMap<>();
 
@@ -219,6 +273,7 @@ public class Main {
 
 			strikeRatePerBatter.put(entry.getKey(), strikeRate);
 		}
+
 		System.out.println(strikeRatePerBatter);
 	}
 }
