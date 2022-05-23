@@ -81,5 +81,21 @@ public class Main {
 		}
 		System.out.println(matchesPlayedPerYear);
 	}
+
+	private static void findNumberOfMatchesWonPerTeamOverAllSeasons(List<Match> matches) {
+		Map<String, Integer> matchesWonPerTeam = new HashMap<>();
+
+		for(Match match: matches) {
+			String winner = match.getWinner(); // result can be no_result
+			if(!winner.equals("")) {	 // Hence, key can be empty string
+				if(!matchesWonPerTeam.containsKey(winner)) {
+					matchesWonPerTeam.put(winner, 1);
+				} else {
+					matchesWonPerTeam.put(winner, matchesWonPerTeam.get(winner) + 1);
+				}
+			}
+		}
+		System.out.println(matchesWonPerTeam);
+	}
 }
 
