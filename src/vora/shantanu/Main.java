@@ -5,27 +5,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		ArrayList<ArrayList<String>> deliveryData = new ArrayList<>();
-		ArrayList<ArrayList<String>> matchData = new ArrayList<>();
+		List<Match> match = getMatchesData();
+		List<Delivery> delivery = getDeliveriesData();
 
-		readMatches(matchData);
-		readDeliveries(deliveryData);
-
-//		System.out.println(matchData);
-		Scenario1 scenario1 = new Scenario1(matchData);
-		Scenario2 scenario2 = new Scenario2(matchData);
-		Scenario3 scenario3 = new Scenario3(matchData, deliveryData);
-		Scenario4 scenario4 = new Scenario4(matchData, deliveryData);
-		Scenario5 scenario5 = new Scenario5(matchData, deliveryData);
-		scenario1.printOutput();
-		scenario2.printOutput();
-		scenario3.printOutput();
-		scenario4.printOutput();
-		scenario5.printOutput();
+		findNumberOfMatchesPlayedPerTeam(match);
+		findNumberOfMatchesWonPerTeamOverAllSeasons(match);
+		findExtraRunsConcededPerTeamIn2016(match, delivery);
+		HashMap<String, double[]> deliveriesAndRunsPerBowler = findDeliveriesAndRunsPerBowler(match, delivery);
+		findTopEconomicalBowlerIn2015(deliveriesAndRunsPerBowler);
+		HashMap<String, double[]> deliveriesAndRunsPerBatter = findDeliveriesAndRunsPerBatter(match, delivery);
+		findStrikeRateOfBattersIn2017(deliveriesAndRunsPerBatter);
 
 
 	}
