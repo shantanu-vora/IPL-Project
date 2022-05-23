@@ -122,5 +122,31 @@ public class Main {
 
 		System.out.println(extraRunsConcededPerTeamIn2016);
 	}
+
+	private static HashMap<String, double[]> findDeliveriesAndRunsPerBowler(List<Match> matches, List<Delivery> deliveries) {
+		HashMap<String, double[]> deliveriesAndRunsPerBowler = new HashMap<>();
+
+		for(Match match: matches) {
+			if(match.getSeason().equals("2015")) {
+				for(Delivery delivery: deliveries) {
+					if(match.getId().equals(delivery.getMatchId())) {
+						String bowler = delivery.getBowler();
+
+						if(!deliveriesAndRunsPerBowler.containsKey(bowler)) {
+
+							deliveriesAndRunsPerBowler.put(bowler, new double[2]);
+							//total runs conceded accessed at index 17
+							deliveriesAndRunsPerBowler.get(bowler)[0] = 1.0;
+							deliveriesAndRunsPerBowler.get(bowler)[1] = Double.parseDouble(delivery.getTotalRuns());
+						} else {
+							deliveriesAndRunsPerBowler.get(bowler)[0]++;
+							deliveriesAndRunsPerBowler.get(bowler)[1] += Double.parseDouble(delivery.getTotalRuns());
+						}
+					}
+				}
+			}
+		}
+		return deliveriesAndRunsPerBowler;
+	}
 }
 
