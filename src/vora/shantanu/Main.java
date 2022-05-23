@@ -148,5 +148,19 @@ public class Main {
 		}
 		return deliveriesAndRunsPerBowler;
 	}
+
+	private static void findTopEconomicalBowlerIn2015(HashMap<String, double[]> deliveriesAndRunsPerBowler) {
+		Map<String, Double> economyRatePerBowler = new HashMap<>();
+
+		for (Map.Entry<String, double[]> entry : deliveriesAndRunsPerBowler.entrySet()) {
+			double deliveries = deliveriesAndRunsPerBowler.get(entry.getKey())[0];
+			double runs = deliveriesAndRunsPerBowler.get(entry.getKey())[1];
+			Double economyRate = (runs) / (deliveries / 6.0);
+
+			economyRatePerBowler.put(entry.getKey(), economyRate);
+		}
+
+		System.out.println(economyRatePerBowler);
+	}
 }
 
