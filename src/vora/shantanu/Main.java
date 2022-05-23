@@ -7,15 +7,29 @@ import java.util.*;
 
 
 public class Main {
+
+	public static final int ID = 0;
+	public static final int SEASON_YEAR = 1;
+	public static final int WINNER = 10;
+	public static final int MATCH_ID = 0;
+	public static final int BOWLING_TEAM = 3;
+	public static final int EXTRA_RUNS = 16;
+	public static final int BOWLER = 8;
+	public static final int TOTAL_RUNS = 17;
+	public static final int BATTER_RUNS = 15;
+	public static final int BATTER = 6;
+
 	public static void main(String[] args) throws IOException {
 		List<Match> match = getMatchesData();
 		List<Delivery> delivery = getDeliveriesData();
 
-		findNumberOfMatchesPlayedPerTeam(match);
+		findNumberOfMatchesPlayedPerSeason(match);
 		findNumberOfMatchesWonPerTeamOverAllSeasons(match);
 		findExtraRunsConcededPerTeamIn2016(match, delivery);
+
 		HashMap<String, double[]> deliveriesAndRunsPerBowler = findDeliveriesAndRunsPerBowler(match, delivery);
 		findTopEconomicalBowlerIn2015(deliveriesAndRunsPerBowler);
+
 		HashMap<String, double[]> deliveriesAndRunsPerBatter = findDeliveriesAndRunsPerBatter(match, delivery);
 		findStrikeRateOfBattersIn2017(deliveriesAndRunsPerBatter);
 
@@ -34,9 +48,9 @@ public class Main {
 			String[] matchFields = line.split(",");
 
 			Match match = new Match();
-			match.setId(matchFields[0]);
-			match.setSeason(matchFields[1]);
-			match.setWinner(matchFields[10]);
+			match.setId(matchFields[ID]); //0
+			match.setSeason(matchFields[SEASON_YEAR]); //1
+			match.setWinner(matchFields[WINNER]); //10
 			matches.add(match);
 		}
 
@@ -55,24 +69,30 @@ public class Main {
 			String[] deliveryFields = line.split(",");
 
 			Delivery delivery = new Delivery();
-			delivery.setMatchId(deliveryFields[0]);
-			delivery.setBowlingTeam(deliveryFields[3]);
-			delivery.setExtraRuns(deliveryFields[16]);
-			delivery.setBowler(deliveryFields[8]);
-			delivery.setTotalRuns(deliveryFields[17]);
-			delivery.setBatterRuns(deliveryFields[15]);
-			delivery.setBatter(deliveryFields[6]);
+			delivery.setMatchId(deliveryFields[MATCH_ID]); //0
+			delivery.setBowlingTeam(deliveryFields[BOWLING_TEAM]); //3
+			delivery.setExtraRuns(deliveryFields[EXTRA_RUNS]); //16
+			delivery.setBowler(deliveryFields[BOWLER]); // 8
+			delivery.setTotalRuns(deliveryFields[TOTAL_RUNS]); //17
+			delivery.setBatterRuns(deliveryFields[BATTER_RUNS]); // 15
+			delivery.setBatter(deliveryFields[BATTER]); // 6
 			deliveries.add(delivery);
 		}
 
 		return deliveries;
 	}
 
-	private static void findNumberOfMatchesPlayedPerTeam(List<Match> matches) {
+	/*
+	* findNumberOfMatchesPlayedPerSeason() method checks for every row representing a match in list matches
+		whether the Season number(year) is already present in the map as a key. If not it
+		initializes the key(Season number) with 1, If yes, it just increments the value by 1.
+		It accesses season year by index 1.
+	* */
+	private static void findNumberOfMatchesPlayedPerSeason(List<Match> matches) {
 		Map<String, Integer> matchesPlayedPerYear = new HashMap<>();
 
 		for(Match match: matches) {
-			String season = match.getSeason();
+			String season = match.getSeason(); //key
 			if(!matchesPlayedPerYear.containsKey(season)) {
 				matchesPlayedPerYear.put(season, 1);
 			} else {

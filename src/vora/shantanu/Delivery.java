@@ -7,24 +7,7 @@ public class Delivery {
 	private String bowler;
 	private String totalRuns;
 	private String batter;
-
-	public String getBatter() {
-		return batter;
-	}
-
-	public void setBatter(String batter) {
-		this.batter = batter;
-	}
-
 	private String batterRuns;
-
-	public String getBatterRuns() {
-		return batterRuns;
-	}
-
-	public void setBatterRuns(String batterRuns) {
-		this.batterRuns = batterRuns;
-	}
 
 	public String getMatchId() {
 		return matchId;
@@ -36,14 +19,6 @@ public class Delivery {
 
 	public String getBowlingTeam() {
 		return bowlingTeam;
-	}
-
-	public String getBowler() {
-		return bowler;
-	}
-
-	public void setBowler(String bowler) {
-		this.bowler = bowler;
 	}
 
 	public void setBowlingTeam(String bowlingTeam) {
@@ -58,11 +33,35 @@ public class Delivery {
 		this.extraRuns = extraRuns;
 	}
 
+	public String getBowler() {
+		return bowler;
+	}
+
+	public void setBowler(String bowler) {
+		this.bowler = bowler;
+	}
+
 	public String getTotalRuns() {
 		return totalRuns;
 	}
 
 	public void setTotalRuns(String totalRuns) {
 		this.totalRuns = totalRuns;
+	}
+
+	public String getBatter() {
+		return batter;
+	}
+
+	public void setBatter(String batter) {
+		this.batter = batter;
+	}
+
+	public String getBatterRuns() {
+		return batterRuns;
+	}
+
+	public void setBatterRuns(String batterRuns) {
+		this.batterRuns = batterRuns;
 	}
 }
