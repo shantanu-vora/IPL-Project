@@ -162,5 +162,31 @@ public class Main {
 
 		System.out.println(economyRatePerBowler);
 	}
+
+	private static HashMap<String,double[]> findDeliveriesAndRunsPerBatter(List<Match> matches, List<Delivery> deliveries) {
+		HashMap<String, double[]> deliveriesAndRunsPerBatter = new HashMap<>();
+
+		for(Match match: matches) {
+			if(match.getSeason().equals("2017")) {
+				for(Delivery delivery: deliveries) {
+					if(match.getId().equals(delivery.getMatchId())) {
+						String batter = delivery.getBatter();
+
+						if(!deliveriesAndRunsPerBatter.containsKey(batter)) {
+
+							deliveriesAndRunsPerBatter.put(batter, new double[2]);
+							//total runs conceded accessed at index 17
+							deliveriesAndRunsPerBatter.get(batter)[0] = 1.0;
+							deliveriesAndRunsPerBatter.get(batter)[1] = Double.parseDouble(delivery.getBatterRuns());
+						} else {
+							deliveriesAndRunsPerBatter.get(batter)[0]++;
+							deliveriesAndRunsPerBatter.get(batter)[1] += Double.parseDouble(delivery.getBatterRuns());
+						}
+					}
+				}
+			}
+		}
+		return deliveriesAndRunsPerBatter;
+	}
 }
 
