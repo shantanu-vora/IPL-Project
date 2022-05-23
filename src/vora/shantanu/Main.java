@@ -97,5 +97,30 @@ public class Main {
 		}
 		System.out.println(matchesWonPerTeam);
 	}
+
+	private static void findExtraRunsConcededPerTeamIn2016(List<Match> matches, List<Delivery> deliveries) {
+		Map<String, Integer> extraRunsConcededPerTeamIn2016 = new HashMap<>();
+
+		for(Match match: matches) {
+
+			if(match.getSeason().equals("2016")) {
+				for(Delivery delivery: deliveries) {
+
+					if(match.getId().equals(delivery.getMatchId())) {
+						String bowlingTeam = delivery.getBowlingTeam();
+						int extras = Integer.parseInt(delivery.getExtraRuns());
+
+						if(!extraRunsConcededPerTeamIn2016.containsKey(bowlingTeam)) {
+							extraRunsConcededPerTeamIn2016.put(bowlingTeam, extras);
+						} else {
+							extraRunsConcededPerTeamIn2016.put(bowlingTeam, extraRunsConcededPerTeamIn2016.get(bowlingTeam) + extras);
+						}
+					}
+				}
+			}
+		}
+
+		System.out.println(extraRunsConcededPerTeamIn2016);
+	}
 }
 
