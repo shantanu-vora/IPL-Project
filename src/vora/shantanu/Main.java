@@ -3,10 +3,7 @@ package vora.shantanu;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 public class Main {
@@ -70,4 +67,19 @@ public class Main {
 
 		return deliveries;
 	}
+
+	private static void findNumberOfMatchesPlayedPerTeam(List<Match> matches) {
+		Map<String, Integer> matchesPlayedPerYear = new HashMap<>();
+
+		for(Match match: matches) {
+			String season = match.getSeason();
+			if(!matchesPlayedPerYear.containsKey(season)) {
+				matchesPlayedPerYear.put(season, 1);
+			} else {
+				matchesPlayedPerYear.put(season, matchesPlayedPerYear.get(season) + 1);
+			}
+		}
+		System.out.println(matchesPlayedPerYear);
+	}
 }
+
