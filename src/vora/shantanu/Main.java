@@ -45,3 +45,29 @@ public class Main {
 
 		return matches;
 	}
+
+	private static List<Delivery> getDeliveriesData() throws IOException {
+		List<Delivery> deliveries = new ArrayList<>();
+
+		FileReader fileReader = new FileReader("./deliveries.csv");
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		bufferedReader.readLine();
+		String line;
+
+		while((line = bufferedReader.readLine()) != null) {
+			String[] deliveryFields = line.split(",");
+
+			Delivery delivery = new Delivery();
+			delivery.setMatchId(deliveryFields[0]);
+			delivery.setBowlingTeam(deliveryFields[3]);
+			delivery.setExtraRuns(deliveryFields[16]);
+			delivery.setBowler(deliveryFields[8]);
+			delivery.setTotalRuns(deliveryFields[17]);
+			delivery.setBatterRuns(deliveryFields[15]);
+			delivery.setBatter(deliveryFields[6]);
+			deliveries.add(delivery);
+		}
+
+		return deliveries;
+	}
+}
