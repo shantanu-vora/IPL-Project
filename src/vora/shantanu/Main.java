@@ -188,5 +188,18 @@ public class Main {
 		}
 		return deliveriesAndRunsPerBatter;
 	}
+
+	private static void findStrikeRateOfBattersIn2017(HashMap<String,double[]> deliveriesAndRunsPerBatter) {
+		HashMap<String, Double> strikeRatePerBatter = new HashMap<>();
+
+		for(Map.Entry<String, double[]> entry: deliveriesAndRunsPerBatter.entrySet()) {
+			Double deliveries = deliveriesAndRunsPerBatter.get(entry.getKey())[0];
+			Double runs = deliveriesAndRunsPerBatter.get(entry.getKey())[1];
+			Double strikeRate = (runs / deliveries) * 100.0;
+
+			strikeRatePerBatter.put(entry.getKey(), strikeRate);
+		}
+		System.out.println(strikeRatePerBatter);
+	}
 }
 
