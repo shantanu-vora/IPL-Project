@@ -25,25 +25,23 @@ public class Main {
 
 	}
 
-	public static void readMatches(ArrayList<ArrayList<String>> matchData) throws IOException {
-		FileReader matchReader = new FileReader("./matches.csv");
-		BufferedReader bufferedReader = new BufferedReader(matchReader);
-		String[] matchHeaders = bufferedReader.readLine().split(",");
-		String line;
-		while((line = bufferedReader.readLine()) != null) {
-			ArrayList<String> match = new ArrayList<>(Arrays.asList((line.split(","))));
-			matchData.add(match);
-		}
-	}
+	private static List<Match> getMatchesData() throws IOException {
+		List<Match> matches = new ArrayList<>();
 
-	public static void readDeliveries(ArrayList<ArrayList<String>> deliveryData) throws IOException {
-		FileReader deliveryReader = new FileReader("./deliveries.csv");
-		BufferedReader bufferedReader = new BufferedReader(deliveryReader);
-		String[] deliveryHeaders = bufferedReader.readLine().split(",");
+		FileReader fileReader = new FileReader("./matches.csv");
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		bufferedReader.readLine();
 		String line;
+
 		while((line = bufferedReader.readLine()) != null) {
-			ArrayList<String> delivery = new ArrayList<>(Arrays.asList((line.split(","))));
-			deliveryData.add(delivery);
+			String[] matchFields = line.split(",");
+
+			Match match = new Match();
+			match.setId(matchFields[0]);
+			match.setSeason(matchFields[1]);
+			match.setWinner(matchFields[10]);
+			matches.add(match);
 		}
+
+		return matches;
 	}
-}
