@@ -19,7 +19,7 @@ public class Main {
 	public static final int BATTER_RUNS = 15;
 	public static final int BATTER = 6;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		List<Match> match = getMatchesData();
 		List<Delivery> delivery = getDeliveriesData();
 
@@ -36,47 +36,55 @@ public class Main {
 
 	}
 
-	private static List<Match> getMatchesData() throws IOException {
+	private static List<Match> getMatchesData() {
 		List<Match> matches = new ArrayList<>();
 
-		FileReader fileReader = new FileReader("./matches.csv");
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		bufferedReader.readLine();
-		String line;
+		try {
+			FileReader fileReader = new FileReader("./matches.csv");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			bufferedReader.readLine();
+			String line;
 
-		while((line = bufferedReader.readLine()) != null) {
-			String[] matchFields = line.split(",");
+			while((line = bufferedReader.readLine()) != null) {
+				String[] matchFields = line.split(",");
 
-			Match match = new Match();
-			match.setId(matchFields[ID]); //0
-			match.setSeason(matchFields[SEASON_YEAR]); //1
-			match.setWinner(matchFields[WINNER]); //10
-			matches.add(match);
+				Match match = new Match();
+				match.setId(matchFields[ID]); //0
+				match.setSeason(matchFields[SEASON_YEAR]); //1
+				match.setWinner(matchFields[WINNER]); //10
+				matches.add(match);
+			}
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 
 		return matches;
 	}
 
-	private static List<Delivery> getDeliveriesData() throws IOException {
+	private static List<Delivery> getDeliveriesData() {
 		List<Delivery> deliveries = new ArrayList<>();
 
-		FileReader fileReader = new FileReader("./deliveries.csv");
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		bufferedReader.readLine();
-		String line;
+		try {
+			FileReader fileReader = new FileReader("./deliveries.csv");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			bufferedReader.readLine();
+			String line;
 
-		while((line = bufferedReader.readLine()) != null) {
-			String[] deliveryFields = line.split(",");
+			while((line = bufferedReader.readLine()) != null) {
+				String[] deliveryFields = line.split(",");
 
-			Delivery delivery = new Delivery();
-			delivery.setMatchId(deliveryFields[MATCH_ID]); //0
-			delivery.setBowlingTeam(deliveryFields[BOWLING_TEAM]); //3
-			delivery.setExtraRuns(deliveryFields[EXTRA_RUNS]); //16
-			delivery.setBowler(deliveryFields[BOWLER]); // 8
-			delivery.setTotalRuns(deliveryFields[TOTAL_RUNS]); //17
-			delivery.setBatterRuns(deliveryFields[BATTER_RUNS]); // 15
-			delivery.setBatter(deliveryFields[BATTER]); // 6
-			deliveries.add(delivery);
+				Delivery delivery = new Delivery();
+				delivery.setMatchId(deliveryFields[MATCH_ID]); //0
+				delivery.setBowlingTeam(deliveryFields[BOWLING_TEAM]); //3
+				delivery.setExtraRuns(deliveryFields[EXTRA_RUNS]); //16
+				delivery.setBowler(deliveryFields[BOWLER]); // 8
+				delivery.setTotalRuns(deliveryFields[TOTAL_RUNS]); //17
+				delivery.setBatterRuns(deliveryFields[BATTER_RUNS]); // 15
+				delivery.setBatter(deliveryFields[BATTER]); // 6
+				deliveries.add(delivery);
+			}
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 
 		return deliveries;
