@@ -42,6 +42,7 @@ public class Main {
 		try {
 			FileReader fileReader = new FileReader("./matches.csv");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			// to skip the first row of headers
 			bufferedReader.readLine();
 			String line;
 
@@ -55,7 +56,7 @@ public class Main {
 				matches.add(match);
 			}
 		} catch (IOException e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		return matches;
@@ -67,6 +68,7 @@ public class Main {
 		try {
 			FileReader fileReader = new FileReader("./deliveries.csv");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			// to skip the first row of headers
 			bufferedReader.readLine();
 			String line;
 
@@ -84,7 +86,7 @@ public class Main {
 				deliveries.add(delivery);
 			}
 		} catch (IOException e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		return deliveries;
